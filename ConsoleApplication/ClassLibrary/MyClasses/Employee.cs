@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary.Enum;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -42,6 +43,7 @@ namespace ClassLibrary.MyClasses
             }
         }
         public string DepartmentName;
+        public EmployeeType EmployeeType;
 
     }
 }

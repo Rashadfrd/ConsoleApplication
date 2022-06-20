@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.MyClasses;
+using ClassLibrary.Enum;
 using System;
 
 namespace ConsoleApp
@@ -21,7 +22,6 @@ namespace ConsoleApp
                 Console.WriteLine("2.3 Isci elave etmek");
                 Console.WriteLine("2.4 Isci uzerinde deyisiklik etmek");
                 Console.WriteLine("2.5  Universityden isci silinmesi");
-                Console.WriteLine("2.6 Axtaris edin");
                 input = Console.ReadLine();
 
                 switch (input)
@@ -178,10 +178,26 @@ namespace ConsoleApp
                     goto IscideMaasiYenidenDaxilEtmek;
                 }
 
+                Console.WriteLine("Isci tipi daxil edin");
+                foreach (var item in Enum.GetValues(typeof(EmployeeType)))
+                {
+                    Console.WriteLine($"{(byte)item} - {item}");
+                }
+
+                string optStr;
+                byte opt;
+                do
+                {
+                    optStr = Console.ReadLine();
+                } while (!byte.TryParse(optStr, out opt) || !Enum.IsDefined(typeof(EmployeeType), opt));
+
+                EmployeeType type = (EmployeeType)opt;
+
                 Employee emp = new Employee(departmentName);
                 emp.Fullname = fullname;
                 emp.Position = position;
                 emp.Salary = salary;
+                emp.EmployeeType = type;
 
                 return emp;
             }
